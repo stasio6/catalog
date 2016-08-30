@@ -1,0 +1,32 @@
+<html>
+<head>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+{%if login_session['username']%}
+<a href={{url_for("disconnect")}}>Disconnect</a>
+{%else%}
+<a href={{url_for("showLogin")}}>Login</a>
+{%endif%}
+
+<h1>Edit Menu Item</h1>
+
+<form action="{{ url_for('editMenuItem', restaurant_id=restaurant_id, item_id=item.id)}}" method = 'post'>
+	<p>Name:</p>
+	<input type = "text" size="30" name="name" value={{item.name}}>
+	<p>Description:</p>
+	<input type = "text" size="200" heigth="50" name="description" value={{item.description}}>
+	<p>Price:</p>
+	<input type = "text" size="30" name="price" value={{item.price}}>
+	<p>Course:</p>
+	<input type = "text" size="30" name="course" value={{item.course}}>
+	</br>
+	<input type = "submit" value="Edit">
+</form>
+
+<a href = "{{url_for('restaurantMenu', restaurant_id=restaurant_id)}}">Cancel</a>
+
+</body>
+
+</html>

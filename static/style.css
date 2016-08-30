@@ -1,0 +1,15 @@
+body {
+	background-color: orange;
+}
+.name {
+	font-size: 25px;
+}
+a {
+	color: black;
+	text-decoration: none;
+	font-style: italic;
+}
+.back {
+	background-color: #00ffff;
+	width: 45px;
+}

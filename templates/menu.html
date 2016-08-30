@@ -1,0 +1,54 @@
+<html>
+<head>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+{%if login_session['username']%}
+<a href={{url_for("disconnect")}}>Disconnect</a>
+{%else%}
+<a href={{url_for("showLogin")}}>Login</a>
+{%endif%}
+
+<h1>{{restaurant.name}}</h1>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+<ul>
+{% for message in messages %}
+  <li><strong>{{message}}</strong></li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+<a href={{url_for("createMenuItem", restaurant_id=restaurant.id)}}>Create new item</a>
+
+{% for i in items %}
+
+<div>
+
+<p class="name">{{i.name}}</p>
+
+<p>{{i.course}}</p>
+
+<p>{{i.description}}</p>
+
+<p> {{i.price}} </p>
+
+<a href={{url_for("editMenuItem", restaurant_id=restaurant.id, item_id=i.id)}}>Edit</a>
+<br>
+<a href={{url_for("deleteMenuItem", restaurant_id=restaurant.id, item_id=i.id)}}>Delete</a>
+
+</div>
+
+
+{% endfor %}
+
+<a href={{url_for("showRestaurants")}}><div class="back"><h3>Back</h3></div></a>
+</br></br>
+
+</body>
+
+</html>
