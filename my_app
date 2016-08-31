@@ -1,0 +1,26 @@
+def hello():
+    return "hello"
+def see():
+    return "see"
+def yey():
+    return "yey"
+
+
+def redirector(argument):
+    switcher = {
+        '/': hello(),
+        '/a': see(),
+        '/hello': yey(),
+    }
+    return switcher.get(argument, "nothing")
+
+def application(environ, start_response):
+    status = '200 OK'
+    output = 'Hello World!'
+
+    response_headers = [('Content-type', 'text/plain'), ('Content-Length', str(len(output)))]
+    start_response(status, response_headers)
+
+    return redirector(environ['PATH_INFO'])
+
+    return [output]

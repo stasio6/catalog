@@ -476,8 +476,16 @@ def application(environ, start_response):
     response_headers = [('Content-type', 'text/plain'), ('Content-Length', str(len(output)))]
     start_response(status, response_headers)
 
-    if environ['PATH']=="/":
+    if environ['PATH'] == "/" or environ['PATH'] == "/restaurant" or environ['PATH'] == "/restaurants":
         return showRestaurants()
+    if environ['PATH'] == '/login':
+        return showLogin()
+    if environ['PATH'] == '/gconnect':
+        return gconnect()
+    if environ['PATH'] == '/fbconnect':
+        return fbconnect()
+    if environ['PATH'] == '/disconnect':
+        return disconnect()
 
     return [output]
 
